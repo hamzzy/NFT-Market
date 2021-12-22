@@ -70,7 +70,12 @@ const [height, setHeight]=useState(0);
 
   return (
     <div className='row'>
-        {  nfts.map((nft, i) => (
+
+
+
+        { 
+
+        nfts.length == 0 ?( <p className=''> No NFT  Available</p>):(nfts.map((nft, i) => (
             <div key={i} className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12 mb-4">
                 <div className="nft__item m-0">
                    
@@ -95,7 +100,10 @@ const [height, setHeight]=useState(0);
                     </div> 
                 </div>
             </div>  
-        ))}
+        ))
+         )
+        
+        }
 
 
           { nfts.length > 10 &&

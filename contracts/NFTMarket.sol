@@ -400,6 +400,9 @@ event ProductListed(
     return items;
   }
 
+
+  
+
   function fetchDetails(uint ItemId) public view returns (uint itemId,address owner,uint256 tokenId,address payable seller,uint256 price,address federation,string[] memory properties){
 
       if (idToMarketItem[ItemId].itemId == ItemId) {

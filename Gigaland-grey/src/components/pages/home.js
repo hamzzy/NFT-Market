@@ -134,11 +134,12 @@ const homeone= () => (
               <h2 className='style-2'>Sport Team</h2>
           </div>
         </div>
+
        <ColumnNew/>
       </div>
       </section>
 
-      <section className='container no-top'>
+      {/* <section className='container no-top'>
         <div className='row'>
           <div className='col-lg-12'>
               <h2 className='style-2'>Hot Collections</h2>
@@ -151,7 +152,7 @@ const homeone= () => (
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
 
       

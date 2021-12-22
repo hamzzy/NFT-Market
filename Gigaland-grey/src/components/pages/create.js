@@ -457,25 +457,7 @@ async function Onselect(e) {
             >
               <div className="field-set">
                 <h5>Create Collections</h5>
-{/* 
-                <div className="d-create-file">
-                  <p id="file_name">PNG, JPG, GIF, WEBP or MP4. Max 200mb.</p>
 
-                  <div className="browse">
-                    <input
-                      type="button"
-                      id="get_file"
-                      className="btn-main"
-                      value="Browse"
-                    />
-                    <input
-                      id="upload_file"
-                      type="file"
-                      multiple
-                      onChange={onChange}
-                    />
-                  </div>
-                </div> */}
 
                 <div className="spacer-single"></div>
 

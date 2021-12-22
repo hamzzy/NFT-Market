@@ -13,40 +13,42 @@ import { createGlobalStyle } from 'styled-components';
 let rpcEndpoint = "http://127.0.0.1:8545/"
 
 export  default function Responsive() {
-const [transaction, setHistory] = useState([]);
+const [fedtransaction, fedsetHistory] = useState([]);
 const [loadingState, setLoadingState] = useState('not-loaded');
 const [height, setHeight]=useState(0);
 const GlobalStyles = createGlobalStyle`
   
 `;
  useEffect(() => {
-    loadTransaction();
+    Transaction();
   }, [])
 
-  async function loadTransaction() {
+  async function Transaction() {
     const provider = new ethers.providers.JsonRpcProvider(rpcEndpoint)
     const tokenContract = new ethers.Contract(nftaddress, NFT.abi, provider)
     const marketContract = new ethers.Contract(nftmarketaddress, Market.abi, provider)
-    const data = await marketContract.fetchTransactions();
+    const data = await marketContract.FederationsTransaction()
 
+    
     const items = await Promise.all(data.map(async i => {
       let price = ethers.utils.formatUnits(i.amount.toString(), 'ether')
       const nft_data= await marketContract.fetchDetails(i.itemId);
+      console.log(nft_data);
       const tokenUri = await tokenContract.tokenURI(nft_data.tokenId)
       const meta = await axios.get(tokenUri)
       let item = {
-        price,
-        buyer: i.buyer,
         name: meta.data.name,
         federation: nft_data.federation,
+        amount:nft_data.amount
       }
       return item
     }))
     console.log(items);
-    setHistory(items)
+    fedsetHistory(items)
     setLoadingState('loaded') 
   }
 
+        // Nft_data: await marketContract.fetchDetails(i.itemId)
     
 
   return (
@@ -57,10 +59,9 @@ const GlobalStyles = createGlobalStyle`
      <Table striped bordered variant="dark" responsive>
   <thead>
     <tr >
-      <th>Buyer</th>
-      <th>Name</th>
-      <th>Amount</th>
+      <th> NFT Name</th>
       <th>federation</th>
+      <th>amount</th>
 
 
 
@@ -68,13 +69,11 @@ const GlobalStyles = createGlobalStyle`
   </thead>
 
   <tbody>
-  { transaction.map((data, i) => (
+  { fedtransaction.map((data, i) => (
     <tr>
-      <td>{data.buyer}</td>
       <td>{data.name}</td>
-      <td>{data.price}</td>
       <td>{data.federation}</td>
-
+      <td>{data.amount}</td>
 
     </tr>
   ))

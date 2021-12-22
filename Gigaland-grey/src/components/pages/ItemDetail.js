@@ -45,6 +45,7 @@ const handleBtnClick1 = (): void => {
 
 const [nfts, setNfts] = useState([]);
 const [loadingState, setLoadingState] = useState('not-loaded');
+const [proper,setProper] = useState([]);
 const param = useParams();
 
 
@@ -60,6 +61,7 @@ const param = useParams();
     const tokenUri = await tokenContract.tokenURI(data.tokenId)
     const meta = await axios.get(tokenUri)
     let price = ethers.utils.formatUnits(data.price.toString(), 'ether')
+      setProper(data.properties)
       const items = {
         price,
         itemId: data.itemId.toNumber(),
@@ -68,12 +70,11 @@ const param = useParams();
         image: meta.data.image,
         name: meta.data.name,
         description: meta.data.description,
-        properties:data.properties
       }
     setNfts(items)
     setLoadingState('loaded') 
   }
- console.log(nfts);
+ console.log(proper);
 
 
 
@@ -90,7 +91,6 @@ const param = useParams();
       value: price
     })
     const tran = await transaction.wait()
-    console.log(tran)
      window.location='/colection'
   }
 
@@ -128,20 +128,29 @@ return (
                                 <div className="de_tab">
     
                                 <ul className="de_nav">
-                                    <li id='Mainbtn' className="active"><span onClick={handleBtnClick}>Properties</span></li>
-                                                                        <li id='Mainbtn' className="active"><span onClick={handleBtnClick}>Properties</span></li>
+                                    <span>Properties</span>
+
 
                                 </ul>
-                                
-                                <div className="de_tab_content">
+                                <div className="row">
+
+                            <ul className="de_nav">
+                            {   proper.map((data)=>  <li id='Mainbtn' className="active"><span>{data}</span></li>)
+                              
+
+}
+                                        </ul>
+                                    
+                                    
+   
+
+                                      </div>
                                     
 
-                              
                               
                               <input type="button" id="submit" onClick={() => buyNft(nfts)} className="btn-main" value="Buy"/>
 
                                     
-                                </div>
                                 
                             </div>
                                 

@@ -4,10 +4,14 @@ import Footer from '../components/footer';
 import { createGlobalStyle } from 'styled-components';
 import History  from '../components/TransactionHistory';
 import CreatedNFT  from '../components/adminNft';
+import FederationHistory  from '../components/FederationHistory';
 
 const GlobalStyles = createGlobalStyle`
   header#myHeader.navbar.white {
     background: #212428;
+  }
+  .mg{
+    margin-top:100px;
   }
 `;
 
@@ -25,15 +29,15 @@ const tabs= () => (
                  <History/>
                 </Tab>
                 <Tab eventKey="profile" title="NFT Created">
-                <div className="container">
+                <div className="container mg">
                 
                   <CreatedNFT/>
                   
                   </div>
                 </Tab>
                 <Tab eventKey="contact" title="Federation Payment History">
-                  <div>
-                  
+                  <div className="mg">
+                  <FederationHistory/>
                   </div>
                 </Tab>
               </Tabs>
