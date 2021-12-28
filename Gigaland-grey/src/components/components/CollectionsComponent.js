@@ -72,12 +72,20 @@ const param = useParams();
 
     {  nfts.map((nft, i) => (
     <div className="col-lg-3 mb30">
-        <span className="box-url">
-             <img src="../img/wallet/1.png" alt="" className="mb20" />
-            <h4  onClick={()=> window.open(`/nft/${nft.subcollectionId}/${nft.name}`, "_self")} >{nft.name}</h4>
-            <p>{nft.description}</p>
-        </span>
+
+
+
+<div className="nft_coll">
+                  <div className="nft_wrap">
+                      <span><img src="../../img/collections/coll-1.jpg" className="lazy img-fluid" alt=""/></span>
+                  </div>
+                  <div className="nft_coll_info">
+                      <h4  onClick={()=> window.open(`/nft/${nft.subcollectionId}/${nft.name}`, "_self")} >{nft.name}</h4>
+                    <p>{nft.description}</p>
+                  </div>
+              </div>
     </div>
+    
     )
     )
 }

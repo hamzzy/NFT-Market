@@ -71,11 +71,15 @@ const [height, setHeight]=useState(0);
 
     {  nfts.map((nft, i) => (
     <div className="col-lg-3 mb30">
-        <span className="box-url">
-            <img src="./img/wallet/1.png" alt=""  onClick={()=> window.open(`/collections/${nft.collectionId}/items`, "_self")} className="mb20"/> 
-            <h4>{nft.name}</h4>
-            <p>{nft.description}</p>
-        </span>
+        <div className="nft_coll">
+                  <div className="nft_wrap">
+                      <span><img src="../img/collections/coll-2.jpg" onClick={()=> window.open(`/collections/${nft.collectionId}/items`, "_self")} className="lazy img-fluid" alt=""/></span>
+                  </div>
+                  <div className="nft_coll_info">
+                      <h4   onClick={()=> window.open(`/collections/${nft.collectionId}/items`, "_self")}>{nft.name}</h4>
+                    <p>{nft.description}</p>
+                  </div>
+              </div>
     </div>
     )
     )
